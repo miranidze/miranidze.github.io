@@ -30,3 +30,29 @@ permalink: /research/
 
 2. Yugay, S., Götz, L., Svanidze, M. et al. The effects of weather extremes on wheat prices in Russia: The role of inputs and Russia’s war in Ukraine. Food Sec. (2025). <a href="https://doi.org/10.1007/s12571-025-01550-8">https://doi.org/10.1007/s12571-025-01550-8</a>
 
+## style 4 
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: start; align-items: flex-start;">
+  <a href="https://github.com/miranidze/norwegian_salmon_value_chains">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post1.png" style="width:30%; display:inline-block;">
+  </a>
+  <a href="https://github.com/miranidze/russia-wheat-ban-market-integration">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post22.png" style="width:30%; display:inline-block;">
+  </a>
+  <a href="https://github.com/miranidze/eu-blacksea-wheat">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster3.png" style="width:30%; display:inline-block;">
+  </a>
+  <a href="https://github.com/miranidze/wheat-market-eurasia">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster4.png" style="width:30%; display:inline-block;">
+  </a>
+  <a href="https://github.com/miranidze/grain-market-efficiency-russia">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster5.png" style="width:30%; display:inline-block;">
+  </a>
+  <a href="https://github.com/miranidze/russia_wheat_export_ban">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster6.png" style="width:30%; display:inline-block;">
+  </a>
+</div>
+
+
+
+
