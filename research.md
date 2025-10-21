@@ -33,22 +33,22 @@ permalink: /research/
 ## style 4 
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: start; align-items: flex-start;">
-  <a href="https://github.com/miranidze/norwegian_salmon_value_chains">
+  <a href="https://doi.org/10.1080/13657305.2022.2104403">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post1.png" style="width:30%; display:inline-block;">
   </a>
-  <a href="https://github.com/miranidze/russia-wheat-ban-market-integration">
+  <a href="https://doi.org/10.3390/agriculture11080799">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post22.png" style="width:30%; display:inline-block;">
   </a>
   <a href="https://github.com/miranidze/eu-blacksea-wheat">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster3.png" style="width:30%; display:inline-block;">
   </a>
-  <a href="https://github.com/miranidze/wheat-market-eurasia">
+  <a href="https://link.springer.com/article/10.1007/s12571-019-00933-y">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster4.png" style="width:30%; display:inline-block;">
   </a>
-  <a href="https://github.com/miranidze/grain-market-efficiency-russia">
+  <a href="https://doi.org/10.1016/j.foodpol.2019.101769">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster5.png" style="width:30%; display:inline-block;">
   </a>
-  <a href="https://github.com/miranidze/russia_wheat_export_ban">
+  <a href="https://doi.org/10.1002/aepp.13168">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster6.png" style="width:30%; display:inline-block;">
   </a>
 </div>
