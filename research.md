@@ -39,7 +39,7 @@ permalink: /research/
   <a href="https://doi.org/10.1016/j.gfs.2019.07.004">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post22.png" style="width:30%; display:inline-block;">
   </a>
-  <a href="https://github.com/miranidze/eu-blacksea-wheat">
+  <a href="https://doi.org/10.3390/agriculture11080799">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/poster3.png" style="width:30%; display:inline-block;">
   </a>
   <a href="https://link.springer.com/article/10.1007/s12571-019-00933-y">
