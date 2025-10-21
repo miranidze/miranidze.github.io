@@ -36,7 +36,7 @@ permalink: /research/
   <a href="https://doi.org/10.1080/13657305.2022.2104403">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post1.png" style="width:30%; display:inline-block;">
   </a>
-  <a href="https://doi.org/10.3390/agriculture11080799">
+  <a href="https://doi.org/10.1016/j.gfs.2019.07.004">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze/main/design/post22.png" style="width:30%; display:inline-block;">
   </a>
   <a href="https://github.com/miranidze/eu-blacksea-wheat">
