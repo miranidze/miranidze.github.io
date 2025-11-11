@@ -26,27 +26,36 @@
          {% endif %}
          {% endif %}
          {% endfor %}
-         <a class="sidebar-nav-item" href="{{ '/research/' | relative_url }}">Research</a>
+         <a class="sidebar-nav-item{% if page.url == '/research/' %} active{% endif %}" href="{{ '/research/' | relative_url }}">Research</a>
          <!-- <a class="sidebar-nav-item" href="https://github.com/miranidze">GitHub</a>-->
-
          <!-- ✉️ Email and Twitter icons -->
          <span class="sidebar-nav-item">
          <a href="mailto:svanidze@iamo.de" title="Email" style="font-size:1.5em;">
-            <i class="fa-solid fa-envelope"></i>
+         <i class="fa-solid fa-envelope"></i>
          </a>
          &nbsp;
          <a href="https://x.com/svanidzemiranda" title="Twitter" style="font-size:1.5em;">
-            <i class="fa-brands fa-x-twitter"></i> 
+         <i class="fa-brands fa-x-twitter"></i> 
          </a>
          &nbsp;
          <a href="https://www.linkedin.com/in/miranda-svanidze-3ab49978/" title="LinkedIn" style="font-size:1.5em;">
-            <i class="fa-brands fa-linkedin"></i>
+         <i class="fa-brands fa-linkedin"></i>
          </a>
          &nbsp;
          <a href="https://github.com/miranidze" title="GitHub" style="font-size:1.5em;">
-             <i class="fa-brands fa-github"></i>
+         <i class="fa-brands fa-github"></i>
          </a>
+         &nbsp;
          </span>
+         <!-- QR Code -->
+         <div class="sidebar-nav-item qr-wrapper">
+            <a href="https://myurls.co/miranidze" target="_blank" title="Scan or click QR code" style="display:inline-block;">
+            <img src="{{ '/assets/qrcode.png' | relative_url }}"
+               alt="QR Code"
+               style="width:120px; border-radius:10px; opacity:0.9; transition:opacity 0.3s ease;"
+               class="qr-img">
+            </a>
+         </div>
          <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
       </nav>
       <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
