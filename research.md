@@ -7,6 +7,7 @@ markdown: kramdown
 
 # Publications
 
+{% raw %}
 <div style="display:flex; gap:15px; align-items:flex-start; max-width:900px;">
 
   <div style="flex:1; line-height:1.5;">
@@ -24,6 +25,7 @@ markdown: kramdown
   </a>
 
 </div>
+{% endraw %}
 
 
 
