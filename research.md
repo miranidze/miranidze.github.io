@@ -2,6 +2,7 @@
 layout: default
 title: Research
 permalink: /research/
+markdown: kramdown
 ---
 
 # Publications
