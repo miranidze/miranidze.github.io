@@ -22,7 +22,7 @@ markdown: kramdown
 
   <a href="https://doi.org/10.52825/gjae.v73i3.1353">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image1.png"
-         style="width:420px; height:auto;">
+         style="width:440px; height:auto;">
   </a>
 
 </div>
@@ -38,9 +38,9 @@ markdown: kramdown
     </a>
   </p>
 
-  <a href="https://doi.org/10.52825/gjae.v73i3.1353">
+  <a href="https://doi.org/10.1007/s12571-025-01550-8">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image2.png"
-         style="width:420px; height:auto;">
+         style="width:520px; height:auto;">
   </a>
 
 </div>
