@@ -30,18 +30,16 @@ markdown: kramdown
 
 <div style="display:flex; gap:15px; align-items:flex-start; max-width:900px;">
   
-  <p style="margin-left:1em; margin-right:1em; position:relative; padding-left:1.2em; line-height:1.5;">
+<p style="margin-left:1em; margin-right:1em; position:relative; padding-left:1.2em; line-height:1.5;">
     <span style="position:absolute; left:0; top:0;">∎</span>
-    Jamali Jaghdani, T., Glauben, T., Götz, L., <b>Svanidze, M</b> and Prehn, S. (2025). 
-    <i>The stability of the global wheat trade in the post-Soviet space: A trade duration approach.</i> 
-    German Journal of Agricultural Economics 73 (3).<br>
-    <a href="https://doi.org/10.52825/gjae.v73i3.1353">
-      https://doi.org/10.52825/gjae.v73i3.1353
+    Yugay, Stanislav; Götz, Linde; <b>Svanidze,Miranda</b>; Baffes, John (2025).<i>The effects of weather extremes on wheat prices in Russia: The role of inputs and Russia's war in Ukraine.</i> Food Security 17 (5): 1257–1271.
+    <a href="https://doi.org/10.1007/s12571-025-01550-8">
+    https://doi.org/10.1007/s12571-025-01550-8
     </a>
   </p>
 
   <a href="https://doi.org/10.52825/gjae.v73i3.1353">
-    <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image1.png"
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image2.png"
          style="width:420px; height:auto;">
   </a>
 
