@@ -12,7 +12,7 @@ permalink: /research/
 
   <!-- Text column -->
   <div style="flex:1; line-height:1.5;">
-    ∎ Jamali Jaghdani, T., Glauben, T., Götz, L., Svanidze, M and Prehn, S. (2025)  
+    ∎ Jamali Jaghdani, T., Glauben, T., Götz, L., <b>Svanidze, M</b> and Prehn, S. (2025)  
     <i>The stability of the global wheat trade in the post-Soviet space: A trade duration approach.</i>  
     German Journal of Agricultural Economics 73 (3).  
     <br>
