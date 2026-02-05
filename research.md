@@ -64,6 +64,7 @@ markdown: kramdown
 
 </div>
 
+<!---
 
 ## style 1
 ```
@@ -112,6 +113,7 @@ markdown: kramdown
   </a>
 </div>
 
+-->
 
 
 
