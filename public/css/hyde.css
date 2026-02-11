@@ -316,8 +316,8 @@ a.sidebar-nav-item:focus {
 /* IAMO line */
 .site-tagline {
   font-size: 0.85rem;             /* smaller than description */
-  font-weight: 500;              /* same boldness */
-  color: rgba(255,255,255,0.6);   /* lighter */
+  font-weight: 400;              /* boldness */
+  color: rgba(190, 5, 36, 0.6);   /* lighter */
   line-height: 1.4;
   margin-top: 0;
 }
