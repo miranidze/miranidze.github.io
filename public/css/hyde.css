@@ -313,11 +313,10 @@ a.sidebar-nav-item:focus {
   transform: scale(1.05);
 }
 
-/* Hyde tagline */
-.sidebar .sidebar-about .site-tagline {
-  font-size: 0.85rem !important;
-  font-weight: 500 !important;
-  color: rgba(255,255,255,0.6) !important;
-  line-height: 1.4 !important;
-  margin-top: 0 !important;
+/* Your institute */
+.my-tagline {
+  font-size: 0.85rem;               /* smaller */
+  font-weight: 500;                /* same boldness */
+  color: rgba(255,255,255,0.6);
+  line-height: 1.4;
 }
