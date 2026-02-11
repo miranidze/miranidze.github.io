@@ -313,8 +313,3 @@ a.sidebar-nav-item:focus {
   transform: scale(1.05);
 }
 
-.site-tagline {
-    font-size: 0.85rem;
-    color: #adadad;
-    margin-top: -10px;
-}
