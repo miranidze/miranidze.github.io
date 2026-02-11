@@ -317,6 +317,8 @@ a.sidebar-nav-item:focus {
 .my-tagline {
   font-size: 0.85rem;               /* smaller */
   font-weight: 900;                /* same boldness */
+  letter-spacing: 0.01em;
   color: rgba(255,255,255,0.6);
   line-height: 1.4;
+  margin-top: 0;
 }
