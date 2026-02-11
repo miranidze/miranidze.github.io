@@ -316,7 +316,7 @@ a.sidebar-nav-item:focus {
 /* Your institute */
 .my-tagline {
   font-size: 0.85rem;               /* smaller */
-  font-weight: 600;                /* same boldness */
+  font-weight: 900;                /* same boldness */
   color: rgba(255,255,255,0.6);
   line-height: 1.4;
 }
