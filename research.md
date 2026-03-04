@@ -22,7 +22,7 @@ markdown: kramdown
 
   <a href="https://doi.org/10.52825/gjae.v73i3.1353">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image1.png"
-         style="width:520px; height:auto;">
+         style="width:600px; height:auto;">
   </a>
 
 </div>
@@ -40,7 +40,7 @@ markdown: kramdown
 
   <a href="https://doi.org/10.1007/s12571-025-01550-8">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image2.png"
-         style="width:520px; height:auto;">
+         style="width:600px; height:auto;">
   </a>
 
 </div>
@@ -59,7 +59,7 @@ markdown: kramdown
 
   <a href="https://doi.org/10.1111/agec.12822">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image3.png"
-         style="width:460px; height:auto;">
+         style="width:530px; height:auto;">
   </a>
 
 </div>
@@ -77,7 +77,7 @@ markdown: kramdown
 
   <a href="https://doi.org/10.2478/wd-2023-0139">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image4.png"
-         style="width:520px; height:auto;">
+         style="width:500px; height:auto;">
   </a>
 
 </div>
