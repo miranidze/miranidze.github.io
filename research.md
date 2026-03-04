@@ -59,6 +59,24 @@ markdown: kramdown
 
   <a href="https://doi.org/10.1111/agec.12822">
     <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image3.png"
+         style="width:460px; height:auto;">
+  </a>
+
+</div>
+
+<!--paper4-->
+<div style="display:flex; gap:15px; align-items:flex-start; max-width:900px;">
+  
+<p style="margin-left:1em; margin-right:1em; position:relative; padding-left:1.2em; line-height:1.5;">
+    <span style="position:absolute; left:0; top:0;">∎</span>
+    Glauben,Thomas; <b>Svanidze,Miranda</b> (2024).<i> Global agricultural trade: a robust safety net to reduce hunger risks in times of crisis. </i> Agricultural Economics 55 (2): 384-411.
+    <a href="https://doi.org/10.2478/wd-2023-0139">
+    https://doi.org/10.2478/wd-2023-0139
+    </a>
+  </p>
+
+  <a href="https://doi.org/10.2478/wd-2023-0139">
+    <img src="https://raw.githubusercontent.com/miranidze/miranidze.github.io/main/assets/design/image4.png"
          style="width:520px; height:auto;">
   </a>
 
