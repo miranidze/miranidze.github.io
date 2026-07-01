@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: #f3f3f3;
+}
+
+.toolbar {
+  height: 56px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+button, a {
+  padding: 8px 12px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background: white;
+  color: #222;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+#book {
+  width: 520px;
+  height: 735px;
+}
+
+.page {
+  background: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  #book {
+    width: 92vw;
+    height: 130vw;
+  }
+
+  .toolbar {
+    font-size: 14px;
+    gap: 8px;
+  }
+}
