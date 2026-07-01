@@ -1,12 +1,36 @@
 /*
+ *  __                  __
+ * /\ \                /\ \
+ * \ \ \___   __  __   \_\ \     __
+ *  \ \  _ `\/\ \/\ \  /'_` \  /'__`\
+ *   \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
+ *    \ \_\ \_\/`____ \ \___,_\ \____\
+ *     \/_/\/_/`/___/> \/__,_ /\/____/
+ *                /\___/
+ *                \/__/
  *
-   _____                             
- |_   _|__ ______ _ _ __ ___   ___  
-   | |/ _ \_  / _` | '_ ` _ \ / _ \ 
-   | |  __// / (_| | | | | | | (_) |
-   |_|\___/___\__,_|_| |_| |_|\___/ 
-                                    
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/hyde.
  */
+
+
+/*
+ * Contents
+ *
+ * Global resets
+ * Sidebar
+ * Container
+ * Reverse layout
+ * Themes
+ */
+
+
+/*
+ * Global resets
+ *
+ * Update the foundational and global aspects of the page.
+ */
+
 html {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
@@ -17,7 +41,7 @@ html {
 }
 @media (min-width: 58em) {
   html {
-    font-size: 17px;
+    font-size: 20px;
   }
 }
 
@@ -37,26 +61,10 @@ html {
 }
 @media (min-width: 48em) {
   .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
     width: 18rem;
+    flex-shrink: 0;
     text-align: left;
   }
-}
-.sidebar-pic {
-  text-align: center;   /* center the image */
-  margin-bottom: 1rem;  /* spacing between image and text */
-}
-
-.sidebar-pic img {
-  display: block;        /* make sure image is displayed */
-  max-width: 100%;       /* scale down if too large */
-  width: 120px;          /* set desired width */
-  height: auto;          /* keep aspect ratio */
-  border-radius: 50%;    /* make circular */
-  margin: 0 auto;        /* center horizontally */
 }
 
 /* Sidebar links */
@@ -96,10 +104,7 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .sidebar-sticky {
-    position: absolute;
-    right:  1rem;
-    bottom: 1rem;
-    left:   1rem;
+    margin-top: 1rem;
   }
 }
 
@@ -118,14 +123,14 @@ a.sidebar-nav-item:focus {
 @media (min-width: 48em) {
   .content {
     max-width: 38rem;
-    margin-left: 20rem;
+    margin-left: 2rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 22rem;
+    margin-left: 4rem;
     margin-right: 4rem;
   }
 }
@@ -238,78 +243,16 @@ a.sidebar-nav-item:focus {
   color: #8f5536;
 }
 
-/* ===============================
-              QR code
-   =============================== */
-
-/* Default (mobile-first): centered */
-.qr-wrapper {
-  margin-top: 15px;
-  text-align: center;
+.sidebar-pic {
+  text-align: center;   /* center the image */
+  margin-bottom: 1rem;  /* spacing between image and text */
 }
 
-.qr-img {
-  width: 120px;
-  border-radius: 10px;
-  opacity: 0.9;
-  transition: all 0.3s ease;
+.sidebar-pic img {
+  display: block;        /* make sure image is displayed */
+  max-width: 100%;       /* scale down if too large */
+  width: 120px;          /* set desired width */
+  height: auto;          /* keep aspect ratio */
+  border-radius: 50%;    /* make circular */
+  margin: 0 auto;        /* center horizontally */
 }
-
-/* Hover effect for desktop */
-.qr-img:hover {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-/* Desktop: align QR code to left */
-@media (min-width: 48em) {
-  .qr-wrapper {
-    text-align: left;
-  }
-}
-
-/* ===============================
-   Hover effect for social icons
-   =============================== */
-
-.sidebar-nav-item a i {
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-
-/* Same hover as QR code */
-.sidebar-nav-item a i:hover {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-
-/* ===============================
-   Hover effect for sidebar links
-   =============================== */
-
-/* Base transition for all sidebar links (text links only) */
-.sidebar-nav a.sidebar-nav-item {
-  display: block;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-
-/* Hover effect for text links (Home, Publications, etc.) */
-.sidebar-nav a.sidebar-nav-item:hover {
-  opacity: 1;
-  transform: scale(1.05);
-  transform-origin: left center;
-}
-
-/* Keep individual hover for social icons */
-.sidebar-nav-item a i {
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-
-.sidebar-nav-item a:hover i {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
