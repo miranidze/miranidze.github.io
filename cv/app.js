@@ -5,6 +5,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 
 const PDF_URL = "/assets/CV_svanidze_2026.pdf";
 
+const viewer = document.getElementById("viewer");
+const zoomWrapper = document.getElementById("zoom-wrapper");
 const book = document.getElementById("book");
 const pageInfo = document.getElementById("page-info");
 const zoomInfo = document.getElementById("zoom-info");
@@ -14,13 +16,22 @@ let panX = 0;
 let panY = 0;
 
 let isRightDragging = false;
-let startX = 0;
-let startY = 0;
+let dragStartX = 0;
+let dragStartY = 0;
 
 function applyTransform() {
-  book.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
-  book.style.transformOrigin = "center center";
+  zoomWrapper.style.transform =
+    `translate(${panX}px, ${panY}px) scale(${zoom})`;
+
   zoomInfo.textContent = `${Math.round(zoom * 100)}%`;
+}
+
+function resetPanIfNeeded() {
+  if (zoom <= 1) {
+    zoom = 1;
+    panX = 0;
+    panY = 0;
+  }
 }
 
 async function renderPdf() {
@@ -80,63 +91,49 @@ async function renderPdf() {
   };
 
   document.getElementById("zoom-out").onclick = () => {
-    zoom = Math.max(zoom - 0.1, 0.6);
-
-    if (zoom === 1) {
-      panX = 0;
-      panY = 0;
-    }
-
+    zoom = Math.max(zoom - 0.1, 1);
+    resetPanIfNeeded();
     applyTransform();
   };
 
-  // Mouse wheel zoom
-  window.addEventListener("wheel", (event) => {
+  viewer.addEventListener("wheel", (event) => {
     event.preventDefault();
 
     if (event.deltaY < 0) {
       zoom = Math.min(zoom + 0.08, 2.5);
     } else {
-      zoom = Math.max(zoom - 0.08, 0.6);
+      zoom = Math.max(zoom - 0.08, 1);
     }
 
-    if (zoom <= 1) {
-      panX = 0;
-      panY = 0;
-    }
-
+    resetPanIfNeeded();
     applyTransform();
   }, { passive: false });
 
-  // Disable right-click menu on the book
-  book.addEventListener("contextmenu", (event) => {
+  viewer.addEventListener("contextmenu", (event) => {
     event.preventDefault();
   });
 
-  // Right-click drag start
-  window.addEventListener("mousedown", (event) => {
+  viewer.addEventListener("mousedown", (event) => {
     if (event.button === 2 && zoom > 1) {
       isRightDragging = true;
-      startX = event.clientX - panX;
-      startY = event.clientY - panY;
-      document.body.style.cursor = "grabbing";
+      dragStartX = event.clientX - panX;
+      dragStartY = event.clientY - panY;
+      viewer.style.cursor = "grabbing";
     }
   });
 
-  // Right-click drag move
   window.addEventListener("mousemove", (event) => {
     if (!isRightDragging) return;
 
-    panX = event.clientX - startX;
-    panY = event.clientY - startY;
+    panX = event.clientX - dragStartX;
+    panY = event.clientY - dragStartY;
 
     applyTransform();
   });
 
-  // Right-click drag stop
   window.addEventListener("mouseup", () => {
     isRightDragging = false;
-    document.body.style.cursor = "default";
+    viewer.style.cursor = "default";
   });
 
   applyTransform();

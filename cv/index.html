@@ -4,35 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CV Flipbook</title>
-
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
 
 <header class="toolbar">
   <button id="prev">← Prev</button>
-
   <span id="page-info">Loading...</span>
-
   <button id="next">Next →</button>
 
   <button id="zoom-out">−</button>
-
   <span id="zoom-info">100%</span>
-
   <button id="zoom-in">+</button>
 
-  <a href="/assets/CV_svanidze_2026.pdf" download>
-    Download PDF
-  </a>
+  <a href="/assets/CV_svanidze_2026.pdf" download>Download PDF</a>
 </header>
 
-<main>
-  <div id="book"></div>
+<main id="viewer">
+  <div id="zoom-wrapper">
+    <div id="book"></div>
+  </div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
-
 <script type="module" src="./app.js"></script>
 
 </body>
