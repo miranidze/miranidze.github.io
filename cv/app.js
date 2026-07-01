@@ -138,7 +138,11 @@ async function renderPdf() {
 
         showCover: true,
 
-        mobileScrollSupport: false
+        mobileScrollSupport: false,
+
+        // We handle mouse interaction ourselves (left-click drag = pan),
+        // so stop page-flip from also treating clicks/drags as page turns.
+        useMouseEvents: false
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll(".page"));
@@ -210,18 +214,16 @@ async function renderPdf() {
         applyTransform();
     }, { passive: false });
 
-    // --- Right-click + drag = pan ---
+    // --- Left-click + drag = pan ---
     let isPanning = false;
     let startX = 0;
     let startY = 0;
     let startPanX = 0;
     let startPanY = 0;
 
-    // Prevent the browser context menu when right-clicking the book
-    book.addEventListener("contextmenu", (e) => e.preventDefault());
-
     book.addEventListener("mousedown", (e) => {
-        if (e.button !== 2) return; // only right mouse button
+        if (e.button !== 0) return; // only left mouse button
+        if (e.target.closest(".pdf-link")) return; // let link clicks through untouched
 
         isPanning = true;
         startX = e.clientX;
