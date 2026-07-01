@@ -2,7 +2,6 @@ body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
   background: #f3f3f3;
-  overflow: hidden;
 }
 
 .toolbar {
@@ -28,16 +27,12 @@ button, a {
   cursor: pointer;
 }
 
-#viewer {
-  height: calc(100vh - 56px);
+main {
+  min-height: calc(100vh - 56px);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-}
-
-#zoom-wrapper {
-  transition: transform 0.05s ease-out;
+  padding: 24px;
 }
 
 #book {
@@ -66,12 +61,5 @@ button, a {
   .toolbar {
     font-size: 14px;
     gap: 8px;
-    flex-wrap: wrap;
-    height: auto;
-    padding: 8px;
-  }
-
-  #viewer {
-    height: calc(100vh - 80px);
   }
 }
