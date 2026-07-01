@@ -33,6 +33,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 24px;
+  overflow: hidden;
 }
 
 #book {
