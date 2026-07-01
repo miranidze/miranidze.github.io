@@ -174,7 +174,7 @@ async function renderPdf() {
     let panY = 0;
     let coverOffsetX = 0; // extra horizontal correction so single cover pages sit centered
 
-    const ZOOM_MIN = 0.6;
+    const ZOOM_MIN = 1;
     const ZOOM_MAX = 2.5;
 
     function applyTransform() {
