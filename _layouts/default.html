@@ -1,8 +1,14 @@
-<body>
-  <div style="display: flex; min-height: 100vh;">
-    {% include sidebar.html %}
-    <div class="content container">
-      {{ content }}
+<!DOCTYPE html>
+<html lang="en-us">
+
+  {% include head.html %}
+
+  <body>
+    <div style="display: flex; min-height: 100vh;">
+      {% include sidebar.html %}
+      <div class="content container">
+        {{ content }}
+      </div>
     </div>
-  </div>
-</body>
+  </body>
+</html>
