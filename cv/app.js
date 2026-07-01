@@ -8,6 +8,9 @@ const PDF_URL = "/assets/CV_svanidze_2026.pdf";
 const book = document.getElementById("book");
 const pageInfo = document.getElementById("page-info");
 
+// Keep references so we can reposition link overlays on resize
+const pageRecords = []; // { pageDiv, img, linkLayer, viewport }
+
 async function renderPdf() {
 
     const pdf = await pdfjsLib.getDocument(PDF_URL).promise;
@@ -39,7 +42,86 @@ async function renderPdf() {
 
         pageDiv.appendChild(img);
 
+        // ---- Link overlay layer ----
+        const linkLayer = document.createElement("div");
+        linkLayer.className = "link-layer";
+        pageDiv.appendChild(linkLayer);
+
         book.appendChild(pageDiv);
+
+        pageRecords.push({ pageDiv, img, linkLayer, viewport });
+
+        // Fetch link annotations for this page and build clickable overlays
+        const annotations = await page.getAnnotations({ intent: "display" });
+
+        annotations
+            .filter(a => a.subtype === "Link")
+            .forEach(a => {
+                const rect = pdfjsLib.Util.normalizeRect(
+                    viewport.convertToViewportRectangle(a.rect)
+                );
+
+                const [x1, y1, x2, y2] = rect;
+
+                const left = (x1 / viewport.width) * 100;
+                const top = (y1 / viewport.height) * 100;
+                const width = ((x2 - x1) / viewport.width) * 100;
+                const height = ((y2 - y1) / viewport.height) * 100;
+
+                let href = null;
+
+                if (a.url) {
+                    href = a.url;
+                } else if (a.unsafeUrl) {
+                    href = a.unsafeUrl;
+                }
+
+                if (!href) return; // skip internal/dest-only links we can't resolve
+
+                const link = document.createElement("a");
+                link.href = href;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.className = "pdf-link";
+                link.style.left = `${left}%`;
+                link.style.top = `${top}%`;
+                link.style.width = `${width}%`;
+                link.style.height = `${height}%`;
+
+                linkLayer.appendChild(link);
+            });
+    }
+
+    // Keep every overlay aligned with its (object-fit: contain) image
+    function positionAllLinkLayers() {
+        pageRecords.forEach(({ pageDiv, linkLayer, viewport }) => {
+            const containerW = pageDiv.clientWidth;
+            const containerH = pageDiv.clientHeight;
+
+            if (!containerW || !containerH) return;
+
+            const imgAspect = viewport.width / viewport.height;
+            const containerAspect = containerW / containerH;
+
+            let renderedW, renderedH, offsetX, offsetY;
+
+            if (imgAspect > containerAspect) {
+                renderedW = containerW;
+                renderedH = containerW / imgAspect;
+                offsetX = 0;
+                offsetY = (containerH - renderedH) / 2;
+            } else {
+                renderedH = containerH;
+                renderedW = containerH * imgAspect;
+                offsetY = 0;
+                offsetX = (containerW - renderedW) / 2;
+            }
+
+            linkLayer.style.left = `${offsetX}px`;
+            linkLayer.style.top = `${offsetY}px`;
+            linkLayer.style.width = `${renderedW}px`;
+            linkLayer.style.height = `${renderedH}px`;
+        });
     }
 
     const pageFlip = new St.PageFlip(book, {
@@ -61,6 +143,12 @@ async function renderPdf() {
 
     pageFlip.loadFromHTML(document.querySelectorAll(".page"));
 
+    // Position overlays after layout settles, and whenever it changes
+    requestAnimationFrame(positionAllLinkLayers);
+    window.addEventListener("resize", positionAllLinkLayers);
+    pageFlip.on("changeOrientation", positionAllLinkLayers);
+    pageFlip.on("changeState", positionAllLinkLayers);
+
     function updatePageInfo() {
 
         pageInfo.textContent =
@@ -76,14 +164,20 @@ async function renderPdf() {
     document.getElementById("next").onclick = () => pageFlip.flipNext();
 
     //--------------------------------------------------
-    // Zoom
+    // Zoom + Pan
     //--------------------------------------------------
 
     let zoom = 1;
+    let panX = 0;
+    let panY = 0;
 
-    function applyZoom() {
+    const ZOOM_MIN = 0.6;
+    const ZOOM_MAX = 2.5;
 
-        book.style.transform = `scale(${zoom})`;
+    function applyTransform() {
+
+        book.style.transform =
+            `translate(${panX}px, ${panY}px) scale(${zoom})`;
 
         book.style.transformOrigin = "center center";
 
@@ -92,20 +186,71 @@ async function renderPdf() {
     }
 
     document.getElementById("zoom-in").onclick = () => {
-
-        zoom = Math.min(zoom + 0.1, 2);
-
-        applyZoom();
+        zoom = Math.min(zoom + 0.1, ZOOM_MAX);
+        applyTransform();
     };
 
     document.getElementById("zoom-out").onclick = () => {
-
-        zoom = Math.max(zoom - 0.1, 0.6);
-
-        applyZoom();
+        zoom = Math.max(zoom - 0.1, ZOOM_MIN);
+        applyTransform();
     };
 
-    applyZoom();
+    applyTransform();
+
+    // --- Scroll wheel = zoom (instead of page scroll) ---
+    const bookWrapper = document.querySelector("main");
+
+    bookWrapper.addEventListener("wheel", (e) => {
+        e.preventDefault();
+
+        const delta = -e.deltaY * 0.0015;
+
+        zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, zoom + delta));
+
+        applyTransform();
+    }, { passive: false });
+
+    // --- Right-click + drag = pan ---
+    let isPanning = false;
+    let startX = 0;
+    let startY = 0;
+    let startPanX = 0;
+    let startPanY = 0;
+
+    // Prevent the browser context menu when right-clicking the book
+    book.addEventListener("contextmenu", (e) => e.preventDefault());
+
+    book.addEventListener("mousedown", (e) => {
+        if (e.button !== 2) return; // only right mouse button
+
+        isPanning = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        startPanX = panX;
+        startPanY = panY;
+
+        book.style.cursor = "grabbing";
+        book.style.userSelect = "none";
+    });
+
+    window.addEventListener("mousemove", (e) => {
+        if (!isPanning) return;
+
+        panX = startPanX + (e.clientX - startX);
+        panY = startPanY + (e.clientY - startY);
+
+        applyTransform();
+    });
+
+    window.addEventListener("mouseup", () => {
+        if (!isPanning) return;
+
+        isPanning = false;
+        book.style.cursor = "grab";
+        book.style.userSelect = "";
+    });
+
+    book.style.cursor = "grab";
 
 }
 

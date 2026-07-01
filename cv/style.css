@@ -33,14 +33,17 @@ main {
   justify-content: center;
   align-items: center;
   padding: 24px;
+  overflow: hidden; /* wheel now controls zoom, not page scroll */
 }
 
 #book {
   width: 520px;
   height: 735px;
+  cursor: grab;
 }
 
 .page {
+  position: relative; /* anchor for the link overlay layer */
   background: white;
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
@@ -50,6 +53,30 @@ main {
   height: 100%;
   object-fit: contain;
   display: block;
+  pointer-events: none; /* let the link layer handle clicks */
+}
+
+/* Overlay that holds clickable links, positioned to match the
+   rendered (object-fit: contain) image exactly via JS */
+.link-layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.pdf-link {
+  position: absolute;
+  display: block;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.pdf-link:hover {
+  background: rgba(37, 99, 235, 0.12);
+  outline: 1px dashed rgba(37, 99, 235, 0.6);
 }
 
 @media (max-width: 700px) {
