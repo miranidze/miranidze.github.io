@@ -161,8 +161,6 @@ async function renderPdf() {
 
     updatePageInfo();
 
-    pageFlip.on("flip", updatePageInfo);
-
     document.getElementById("prev").onclick = () => pageFlip.flipPrev();
 
     document.getElementById("next").onclick = () => pageFlip.flipNext();
@@ -174,6 +172,7 @@ async function renderPdf() {
     let zoom = 1;
     let panX = 0;
     let panY = 0;
+    let coverOffsetX = 0; // extra horizontal correction so single cover pages sit centered
 
     const ZOOM_MIN = 0.6;
     const ZOOM_MAX = 2.5;
@@ -181,7 +180,7 @@ async function renderPdf() {
     function applyTransform() {
 
         book.style.transform =
-            `translate(${panX}px, ${panY}px) scale(${zoom})`;
+            `translate(${panX + coverOffsetX}px, ${panY}px) scale(${zoom})`;
 
         book.style.transformOrigin = "center center";
 
@@ -189,15 +188,71 @@ async function renderPdf() {
             `${Math.round(zoom * 100)}%`;
     }
 
-    document.getElementById("zoom-in").onclick = () => {
-        zoom = Math.min(zoom + 0.1, ZOOM_MAX);
-        applyTransform();
-    };
+    // The page-flip library sizes #book for a full two-page spread, so a
+    // lone cover page (first/last) ends up flush against one edge instead
+    // of centered. Measure where the visible page(s) actually sit relative
+    // to #book's own box, and shift #book to compensate.
+    function recenterCover() {
 
-    document.getElementById("zoom-out").onclick = () => {
-        zoom = Math.max(zoom - 0.1, ZOOM_MIN);
+        const prevTransform = book.style.transform;
+        book.style.transform = "none"; // measure the untransformed layout
+
+        const bookRect = book.getBoundingClientRect();
+
+        const visiblePages = Array.from(book.querySelectorAll(".page"))
+            .filter(p => {
+                const r = p.getBoundingClientRect();
+                return r.width > 2 && r.height > 2;
+            });
+
+        let newOffset = 0;
+
+        if (visiblePages.length && bookRect.width > 0) {
+            const left = Math.min(...visiblePages.map(p => p.getBoundingClientRect().left));
+            const right = Math.max(...visiblePages.map(p => p.getBoundingClientRect().right));
+
+            const contentCenter = (left + right) / 2;
+            const bookCenter = (bookRect.left + bookRect.right) / 2;
+
+            newOffset = bookCenter - contentCenter;
+        }
+
+        book.style.transform = prevTransform; // restore before repaint
+
+        coverOffsetX = newOffset;
         applyTransform();
-    };
+    }
+
+    requestAnimationFrame(recenterCover);
+    window.addEventListener("resize", recenterCover);
+    pageFlip.on("flip", () => {
+        updatePageInfo();
+        recenterCover();
+    });
+
+    // Zoom setter shared by buttons + wheel. Panning shrinks proportionally
+    // back to zero as zoom returns to 100%, so zooming out always ends up
+    // back in the center instead of wherever it was last panned to.
+    function setZoom(newZoom) {
+
+        newZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, newZoom));
+
+        if (newZoom <= 1) {
+            panX = 0;
+            panY = 0;
+        } else if (zoom > 1) {
+            const ratio = (newZoom - 1) / (zoom - 1);
+            panX *= ratio;
+            panY *= ratio;
+        }
+
+        zoom = newZoom;
+        applyTransform();
+    }
+
+    document.getElementById("zoom-in").onclick = () => setZoom(zoom + 0.1);
+
+    document.getElementById("zoom-out").onclick = () => setZoom(zoom - 0.1);
 
     applyTransform();
 
@@ -209,9 +264,7 @@ async function renderPdf() {
 
         const delta = -e.deltaY * 0.0015;
 
-        zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, zoom + delta));
-
-        applyTransform();
+        setZoom(zoom + delta);
     }, { passive: false });
 
     // --- Left-click + drag = pan ---
